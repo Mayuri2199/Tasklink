@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: cadetblue;
+  padding:0.5px;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height:500px; /* only for demonstration, should be removed */
+  background: lightblue;
+  padding: 20px;
+}
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: cadetblue;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+    
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2 style="color:white">Corporate Registration</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li ><a href="needhelp.html"style="color:red;">Help Center</a></li>
+      </ul>
+      <br><br><br>
+       </nav>
+   <br>  
+
+<form> 
+  <label><b>Bank Institute Name :</b> </label>   
+<input type="text" placeholder= "Enter Bank Name Here" size="20" required /><br><br>   
+
+<label><b> City Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;:</b></label>   
+<input type="text" placeholder="Enter City Here" size="20" required /><br><br>   
+
+<label><b>Telephone No&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;:</b></label>  
+<input type="text" placeholder="Country Code"  value="+022" size="2"/>   
+<input type="text"  placeholder="Telephone No." size="6"/ required> <br><br> 
+
+<lable><b>Address&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;:</b></label> 
+<textarea cols="20" rows="2" placeholder="Current Address" value="address" required>  
+</textarea><br><br>
+
+<label for="email"><b>Email&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;:</b></label> 
+<input type="text" placeholder="Enter Email"  required><br><br>
+ 
+<label for="uname"><b>Username&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;:</b></label>
+<label> <input type="text" placeholder="Enter Username" required></label><br><br>  
+
+<label for="psw"><b>Password&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;:</b></label>  
+<input type="password" placeholder="Enter Password"  required><br><br>  
+    
+<label for="psw-repeat"><b>Confirm Password&nbsp&nbsp&nbsp&nbsp;:</b></label>  
+<input type="password" placeholder="Confirm Password" required><br><br>  
+
+<input type="button" onclick="location.href='corporatelogin.html';" value="Submit" /><br><br>
+
+<button type="reset" value="Reset">Reset</button>
+    
+    
+</section>
+<footer>
+ 
+</footer>
+
+</form>
+</body>
+</html>

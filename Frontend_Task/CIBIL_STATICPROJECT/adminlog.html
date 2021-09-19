@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    <!-- adjust the page accoroding to window -->
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica,sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: cadetblue;
+  padding:0.5px;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; 
+  background: lightblue;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: cadetblue;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2 style="color:white">Admin Login</h2>
+</header>
+
+<section>
+  <nav>
+    <ul> 
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+  <br>
+  
+ <div>
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required><br><br>
+
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required><br><br>
+
+    <input type="button" onclick="location.href='admindata.html';" value="Login" /><br><br>
+    <label>
+      <input type="checkbox" checked="checked"> Remember me
+    </label><br><br>
+    <button type="reset" value="Reset">Reset</button>
+  </div>
+
+  
+</section>
+
+<footer>
+  <p></p>
+</footer>
+</form>
+</body>
+</html>

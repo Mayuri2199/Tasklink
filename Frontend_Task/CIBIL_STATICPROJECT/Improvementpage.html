@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: cadetblue;
+  padding:0.5px;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: lightblue;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: cadetblue;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2 style="color:white">Improvement Form</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="Scorecheck.html">CIBIL Score Check</a></li>
+      <li><a href="reportpage.html">CIBIL Score Report</a></li>
+      <li ><a href="needhelp.html"style="color:red;">Help Center</a></li>
+      <li><a href="loginpage.html">Home</a></li>
+      
+    </ul>
+  </nav>
+  <br>
+<lable><b> Fill Your Improve Information below<b> </label> <br><br>
+<textarea cols="30" rows="3" placeholder="Current Address" value="address" required>  
+</textarea><br><br>
+
+<div>
+  <script type="text/javascript">
+            function showMessage() {
+                alert("After Verification We Will Update Your CIBIL Score..");
+            }
+        </script>
+  <input type="button" id="btnShowMsg" value="Submit" onClick="showMessage()" />
+
+</div>
+ 
+</section>
+
+<footer>
+  <p></p>
+</footer>
+
+</body>
+</html>
