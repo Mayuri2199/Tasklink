@@ -1,0 +1,198 @@
+CREATE DATABASE Company1;
+SHOW DATABASES;
+USE Company1;
+
+CREATE TABLE Worker (
+WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+FIRST_NAME CHAR(25),
+LAST_NAME CHAR(25),
+SALARY INT(15),
+JOINING_DATE DATETIME,
+DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker
+(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+(001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+(002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+(003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+(004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+(005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+(006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+(008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+
+
+-- fetch the list of employees with the same salary.
+select * from worker WHERE SALARY LIKE '5%'; -- my a
+Select distinct W.WORKER_ID, W.FIRST_NAME, W.Salary 
+from Worker W, Worker W1 
+where W.Salary = W1.Salary 
+and W.WORKER_ID != W1.WORKER_ID;
+
+-- fetch the first half of the records from a worker table.
+select * from worker group by WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT  limit 0,4;
+
+-- show only odd rows from a worker table
+
+
+-- print details of the Workers whose FIRST_NAME ends with ‘a’
+SELECT * FROM worker WHERE FIRST_NAME LIKE '%A';
+-- print details of the Workers whose SALARY lies between 100000 and 700000.
+select * from worker where salary between  100000 and  700000;
+
+
+-- Print three max salaries from a table.
+
+select salary from worker group by salary order by  salary desc limit 0,3;
+
+
+Select MAX(salary) as salary from worker where salary <(select MAX(salary)from worker);
+
+
+
+-- Fetch the total employee count  of employees working in the department of‘HR’.
+select count(department) from worker where DEPARTMENT='HR';
+
+-- show the second highest salary person from a table.
+select max(salary) as sec_salary from worker where salary not in (select max(salary) from worker) ;
+ 
+-- I need “Last_NAME” from Worker table in lower case.
+select last_name from  worker as WORKER_Last_NAME;
+select last_name as worker_last_name from worker;
+
+-- print details of the Workers who have joined in June ’2014 and Jan 2014.
+select * from worker where JOINING_DATE='2014-01-01' or JOINING_DATE='2014-06-01';
+select * from worker where joining_date between '14-06-01' and '14-06-30' or joining_date between '14-01-01' and '14-01-31' ;
+
+
+-- need print Worker details from the Worker table order by FIRST_NAME decending.
+select * from worker order by first_name desc;
+
+-- i need to print Last_NAME from Worker table after replacing ‘e’ with ‘I’.
+update worker set last_name ='I' where last_name='e';
+
+
+
+select lower(last_name) from worker;
+
+CREATE TABLE Bonus (
+WORKER_REF_ID INT,
+BONUS_AMOUNT INT(10),
+BONUS_DATE DATETIME,
+FOREIGN KEY (WORKER_REF_ID)
+REFERENCES Worker(WORKER_ID)
+        ON DELETE CASCADE
+);
+
+INSERT INTO Bonus
+(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+(001, 5000, '16-02-20'),
+(002, 3000, '16-06-11'),
+(003, 4000, '16-02-20'),
+(001, 4500, '16-02-20'),
+(002, 3500, '16-06-11');
+
+-- show one row thrice in results from a bonus table.
+
+CREATE TABLE Title (
+WORKER_REF_ID INT,
+WORKER_TITLE CHAR(25),
+AFFECTED_FROM DATETIME,
+FOREIGN KEY (WORKER_REF_ID)
+REFERENCES Worker(WORKER_ID)
+        ON DELETE CASCADE
+);
+
+drop table title;
+
+INSERT INTO Title
+(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+(001, 'Manager', '2016-02-20 00:00:00'),
+(002, 'Executive', '2016-06-11 00:00:00'),
+(008, 'Executive', '2016-06-11 00:00:00'),
+(005, 'Manager', '2016-06-11 00:00:00'),
+(004, 'Asst. Manager', '2016-06-11 00:00:00'),
+(007, 'Executive', '2016-06-11 00:00:00'),
+(006, 'Lead', '2016-06-11 00:00:00'),
+(003, 'Lead', '2016-06-11 00:00:00');
+
+-- .print details of the Workers who are also Managers
+select * from title where WORKER_TITLE='manager';
+
+select * from worker inner join title where WORKER_TITLE='Executive';
+
+-- all question and there queries based on above table.
+
+-- 1 Write an SQL query to fetch “FIRST_NAME” from Worker table using the alias name as <WORKER_NAME>.
+Select FIRST_NAME AS WORKER_NAME from Worker;
+
+-- 2 Write an SQL query to fetch “FIRST_NAME” from Worker table in upper case.
+Select upper(FIRST_NAME) from Worker;
+
+-- 3 Write an SQL query to fetch unique values of DEPARTMENT from Worker table.
+Select distinct DEPARTMENT from Worker;
+
+-- 4 Write an SQL query to print the first three characters of  FIRST_NAME from Worker table.
+Select substring(FIRST_NAME,1,3) from Worker;
+
+-- 5 Write an SQL query to find the position of the alphabet (‘a’) in the first name column ‘Amitabh’ from Worker table.
+Select INSTR(FIRST_NAME, BINARY'a') from Worker where FIRST_NAME = 'Amitabh';
+
+-- 6 Write an SQL query to print the FIRST_NAME from Worker table after removing white spaces from the right side.
+Select RTRIM(FIRST_NAME) from Worker;
+
+-- 7 Write an SQL query to print the DEPARTMENT from Worker table after removing white spaces from the left side.
+Select LTRIM(DEPARTMENT) from Worker;
+
+-- 8 . Write an SQL query that fetches the unique values of DEPARTMENT from Worker table and prints its length.
+Select distinct length(DEPARTMENT) from Worker;
+
+-- 9 Write an SQL query to print the FIRST_NAME from Worker table after replacing ‘a’ with ‘A’.
+Select REPLACE(FIRST_NAME,'a','A') from Worker;
+
+-- 10 Write an SQL query to print the FIRST_NAME and LAST_NAME from Worker table into a single column COMPLETE_NAME. A space char should separate them.
+Select CONCAT(FIRST_NAME, ' ', LAST_NAME) AS 'COMPLETE_NAME' from Worker;
+
+-- Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending.
+Select * from Worker order by FIRST_NAME asc;
+
+-- Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending and DEPARTMENT Descending.
+Select * from Worker order by FIRST_NAME asc,DEPARTMENT desc;
+
+-- Write an SQL query to print details for Workers with the first name as “Vipul” and “Satish” from Worker table.
+Select * from Worker where FIRST_NAME in ('Vipul','Satish');
+
+--  Write an SQL query to print details of workers excluding first names, “Vipul” and “Satish” from Worker table
+Select * from Worker where FIRST_NAME not in ('Vipul','Satish');
+
+-- Write an SQL query to print details of Workers with DEPARTMENT name as “Admin”.
+Select * from Worker where DEPARTMENT like 'Admin%';
+
+-- Write an SQL query to print details of the Workers whose FIRST_NAME contains ‘a’.
+Select * from Worker where FIRST_NAME like '%a%';
+
+-- Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets
+Select * from Worker where FIRST_NAME like '_____h';
+
+-- Write an SQL query to print details of the Workers whose SALARY lies between 100000 and 500000.
+Select * from Worker where SALARY between 100000 and 500000;
+
+-- Write an SQL query to print details of the Workers who have joined in Feb’2014.
+Select * from Worker where year(JOINING_DATE) = 2014 and month(JOINING_DATE) = 2;
+
+-- . Write an SQL query to fetch the count of employees working in the department ‘Admin’.
+SELECT COUNT(*) FROM worker WHERE DEPARTMENT = 'Admin';
+
+-- Write an SQL query to fetch worker names with salaries >= 50000 and <= 100000.
+SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) As Worker_Name, Salary
+FROM worker 
+WHERE WORKER_ID IN 
+(SELECT WORKER_ID FROM worker 
+WHERE Salary BETWEEN 50000 AND 100000);
+
+-- . Write an SQL query to fetch the no. of workers for each department in the descending order
+SELECT DEPARTMENT, count(WORKER_ID) No_Of_Workers 
+FROM worker 
+GROUP BY DEPARTMENT 
+ORDER BY No_Of_Workers DESC;
