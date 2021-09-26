@@ -1,0 +1,40 @@
+package Arrays;
+import java.util.*;
+public class ArraySize{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of an array : " );
+		int size = sc.nextInt();
+		if(size<=0 || size % 2 != 0)
+			System.out.println("Invalid input");
+		else{	
+				int[] Roll_no = new int[size];
+				int [] marks = new int[size];
+				System.out.println("Enter the Array elements : ");
+				int count = 0;
+				for(int i =0; i< size; i++){
+					Roll_no[i] = sc.nextInt();
+					marks[i] = sc.nextInt();
+					if(marks[i] >= 70){
+						System.out.println("Roll No. "+ Roll_no[i] + " have cleared the exam." );
+						count++;
+					}
+					
+			}
+}
+
+	
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Enter the size of Array : ");
+//		int size = sc.nextInt();
+//		if(size <  0 && size % 2 != 0){
+//			System.out.println("Invalid Array Size");
+//		}
+//		int [] arr = new int [size];
+//		
+//		for(int i = 0 ; i< size; i++){
+//			int arr = (int) sc.nextInt();
+//		}
+		
+
+
