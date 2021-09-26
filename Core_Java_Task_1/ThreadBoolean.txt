@@ -1,0 +1,41 @@
+class StopThread extends Thread {
+    private volatile boolean stop_flag = true;     
+    public void stopRunning() {
+        stop_flag = false;         
+    }
+    @Override
+    public void run() {
+        while (stop_flag) {        
+            System.out.println("Thread is running...");
+        }
+     System.out.println("Thread stopped!!!");
+    }
+}
+  
+public class Main {   
+    public static void main(String[] args) {
+       
+        StopThread stop_thread = new StopThread();
+              
+        stop_thread.start();
+        try {
+            Thread.sleep(10);
+        } 
+        catch (InterruptedException e)   {
+            e.printStackTrace();
+        }
+          
+        
+         stop_thread.stopRunning();
+    }   
+}
+
+Output:
+
+Thread is running...
+Thread is running...
+Thread is running...
+Thread is running...
+Thread is running...
+Thread is running...
+Thread stopped!!!
